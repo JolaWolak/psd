@@ -1,0 +1,31 @@
+{
+  "name": "psd",
+  "version": "0.1.0",
+  "description": "This is a simple web application to collect student information required to register them for the A. Janta Połczyński Polish Supplementary School in Lakewood",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "nodemon server/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node db/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JolaWolak/psd.git"
+  },
+  "keywords": [],
+  "author": "Jolanta Wolak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JolaWolak/psd/issues"
+  },
+  "homepage": "https://github.com/JolaWolak/psd#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "pg": "^6.1.2",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.29.0"
+  }
+}
