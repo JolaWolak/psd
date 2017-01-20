@@ -17,6 +17,9 @@ Child.belongsTo(Contact, {foreignKey: 'contact_id'});
 Parent.belongsTo(Contact, {foreignKey: 'contact_id'});
 Teacher.belongsTo(Contact, {foreignKey: 'contact_id'});
 
+Family.belongsTo(Child, {foreignKey: 'child_id'});
+Family.belongsTo(Parent, {foreignKey: 'parent_id'});
+
 Contact.belongsTo(Address, {foreignKey: 'address_id'});
 Address.belongsTo(Phone, {foreignKey: 'phone_id'});
 

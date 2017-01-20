@@ -12,9 +12,7 @@ const Phone = db.define('phone', {
 	},
 	category: {
     	type:   Sequelize.ENUM,
-    	values: ['home','cell','work','other'],
-    	default: 'home'
-
+    	values: ['home','cell','work','other']
 	}
 });
 

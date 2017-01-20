@@ -7,8 +7,7 @@ const Family = db.define('family', {
   member_type: {
   	type: Sequelize.ENUM,
   	values: ['parent','child','other_adult']
-  },
-  member_id: Sequelize.INTEGER
+  }
 });
 
 module.exports = Family;

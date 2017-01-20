@@ -6,8 +6,9 @@ const Contact = db.define('contact', {
   email: {
     type: Sequelize.STRING,
     validate: {
+			allowNull: false,
 			isEmail: true,
-			notEmpty: true,
+			notEmpty: true
 		}
 	}
 });
