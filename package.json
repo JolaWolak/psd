@@ -10,7 +10,8 @@
     "start": "nodemon server/app.js",
     "start-client": "webpack -w & nodemon server/app.js",
     "test": "nodemon --exec 'mocha --reporter spec --timeout 300 test/*.test.js || true'",
-    "seed": "node db/seed.js"
+    "seed": "node db/seed.js",
+    "build": "webpack -w"
   },
   "repository": {
     "type": "git",
@@ -24,10 +25,12 @@
   },
   "homepage": "https://github.com/JolaWolak/psd#readme",
   "dependencies": {
+    "axios": "^0.15.3",
     "express": "^4.14.0",
     "pg": "^6.1.2",
     "pg-hstore": "^2.3.2",
     "react": "^15.4.2",
+    "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
     "sequelize": "^3.29.0"
