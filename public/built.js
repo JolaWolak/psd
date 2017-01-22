@@ -21496,7 +21496,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21509,6 +21509,14 @@
 	
 	var _Info2 = _interopRequireDefault(_Info);
 	
+	var _FormContainer = __webpack_require__(182);
+	
+	var _FormContainer2 = _interopRequireDefault(_FormContainer);
+	
+	var _translation = __webpack_require__(181);
+	
+	var _translation2 = _interopRequireDefault(_translation);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21518,32 +21526,52 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var App = function (_React$Component) {
-	  _inherits(App, _React$Component);
+		_inherits(App, _React$Component);
 	
-	  function App() {
-	    _classCallCheck(this, App);
+		function App(props) {
+			_classCallCheck(this, App);
 	
-	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-	  }
+			var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 	
-	  _createClass(App, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement('img', { className: 'logo', src: 'psd_logo_jpg.jpg' }),
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'Witamy na stronie rejestracyjnej naszej szko\u0142y!'
-	        ),
-	        _react2.default.createElement(_Info2.default, { school_year: '2017/18' })
-	      );
-	    }
-	  }]);
+			_this.state = {
+				lang: 'pl',
+				schoolYear: '2017/18'
+			};
+			_this.handleClick = _this.handleClick.bind(_this);
+			return _this;
+		}
 	
-	  return App;
+		_createClass(App, [{
+			key: 'handleClick',
+			value: function handleClick(event) {
+				//clicking the button here toggles between PL and EN
+				if (this.state.lang === 'pl') this.setState({ lang: 'en' });else this.setState({ lang: 'pl' });
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var lang = this.state.lang;
+				return _react2.default.createElement(
+					'div',
+					{ className: 'col-md-12' },
+					_react2.default.createElement('img', { className: 'logo', src: 'psd_logo_jpg.jpg', style: { width: '500px', borderRadius: '1%' } }),
+					_react2.default.createElement(
+						'h1',
+						null,
+						_translation2.default['pageTitle'][lang]
+					),
+					_react2.default.createElement(
+						'button',
+						{ type: 'submit', onClick: this.handleClick, className: 'btn btn-success' },
+						_translation2.default['switchLanguage'][lang]
+					),
+					_react2.default.createElement(_Info2.default, { schoolYear: this.state.schoolYear, title: _translation2.default['infoTitle'][lang], text: _translation2.default['infoText'][lang] }),
+					_react2.default.createElement(_FormContainer2.default, { lang: this.state.lang, title: _translation2.default['infoTitle'][lang] })
+				);
+			}
+		}]);
+	
+		return App;
 	}(_react2.default.Component);
 	
 	exports.default = App;
@@ -21565,7 +21593,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var RegistrationInfo = function RegistrationInfo(props) {
+	exports.default = function (props) {
 	
 	  return _react2.default.createElement(
 	    'div',
@@ -21573,18 +21601,515 @@
 	    _react2.default.createElement(
 	      'h2',
 	      null,
-	      'Zasady Rejestracji w Roku Szkolnym ',
-	      props.school_year
+	      props.title,
+	      ' ',
+	      props.schoolYear
+	    ),
+	    props.text
+	  );
+	};
+	
+	// RegistrationInfo;
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _translation = __webpack_require__(181);
+	
+	var _translation2 = _interopRequireDefault(_translation);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = function (props) {
+	
+	  var lang = props.lang;
+	  var handleSubmit = props.handleSubmit;
+	  var handleChangeFirstName = props.handleChangeFirstName;
+	  var handleChangeLastName = props.handleChangeLastName;
+	  var handleChangeGrade = props.handleChangeGrade;
+	  var handleChangeDOB = props.handleChangeDOB;
+	  var handleChangeBirthPlace = props.handleChangeBirthPlace;
+	  var handleChangeAllergies = props.handleChangeAllergies;
+	
+	  var initFirstName = props.initFirstName;
+	  var initLastName = props.initLastName;
+	  var initGrade = props.initGrade;
+	  var initDOB = props.initDOB;
+	  var initBirthPlace = props.initBirthPlace;
+	  var initAllergies = props.initAllergies;
+	
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'col-md-12' },
+	    _react2.default.createElement(
+	      'h3',
+	      null,
+	      _translation2.default['formTitle'][lang]
 	    ),
 	    _react2.default.createElement(
 	      'p',
 	      null,
-	      'Op\u0142ata za Szko\u0142\u0119 wynosi $200 za jedno dziecko i $320 za dwoje i $400 za troje lub wi\u0119cej dzieci,$30 op\u0142ata rejestracyjna od dziecka za rok. Co roku uiszczamy te\u017C sk\u0142adk\u0119 cz\u0142onkowsk\u0105 w wysoko\u015Bci $10. W op\u0142aty wliczone s\u0105 wyjazdy, pocz\u0119stunki, nagrody, upominki dla dzieci, oraz wynagrodzenia dla nauczycieli. Dodatkowa op\u0142ata dla parafii to $75 pierwsze, $35 drugie i $20 trzecie dziecko.'
+	      _translation2.default['formInfo'][lang]
+	    ),
+	    _react2.default.createElement(
+	      'form',
+	      { onSubmit: handleSubmit, id: 'child_registration' },
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        _translation2.default['childFirstName'][lang],
+	        _react2.default.createElement('input', { onChange: handleChangeFirstName, type: 'text', name: 'firstName', value: initFirstName })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { style: { color: 'white' } },
+	        '-'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        _translation2.default['childLastName'][lang],
+	        _react2.default.createElement('input', { onChange: handleChangeLastName, type: 'text', name: 'lastName', value: initLastName })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'col-md-6' },
+	        _translation2.default['spell'][lang],
+	        _react2.default.createElement('br', null)
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { style: { color: 'white' } },
+	        '-'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { style: { color: 'white' } },
+	        '-'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        _translation2.default['grade'][lang],
+	        _react2.default.createElement(
+	          'select',
+	          { value: initGrade, onChange: handleChangeGrade },
+	          _react2.default.createElement(
+	            'option',
+	            { value: 'dontKnow' },
+	            _translation2.default['dontKnow'][lang]
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: 'preschool' },
+	            _translation2.default['preschool'][lang]
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: 'preK' },
+	            _translation2.default['preK'][lang]
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: 'kindergarten' },
+	            _translation2.default['kindergarten'][lang]
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: 'first' },
+	            _translation2.default['first'][lang]
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: 'second' },
+	            _translation2.default['second'][lang]
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: 'third' },
+	            _translation2.default['third'][lang]
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: 'fourth' },
+	            _translation2.default['fourth'][lang]
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: 'fifth' },
+	            _translation2.default['fifth'][lang]
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: 'sixth' },
+	            _translation2.default['sixth'][lang]
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: 'seventh' },
+	            _translation2.default['seventh'][lang]
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: 'eigth' },
+	            _translation2.default['eigth'][lang]
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: 'ninth' },
+	            _translation2.default['ninth'][lang]
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: 'tenth' },
+	            _translation2.default['tenth'][lang]
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: 'eleventh' },
+	            _translation2.default['eleventh'][lang]
+	          ),
+	          _react2.default.createElement(
+	            'option',
+	            { value: 'jpo' },
+	            _translation2.default['jpo'][lang]
+	          )
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { style: { color: 'white' } },
+	        '-'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        _translation2.default['birthDate'][lang],
+	        _react2.default.createElement('input', { onChange: handleChangeDOB, type: 'text', name: 'dob', value: initDOB })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { style: { color: 'white' } },
+	        '-'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        _translation2.default['birthPlace'][lang],
+	        _react2.default.createElement('input', { onChange: handleChangeBirthPlace, type: 'text', name: 'birthPlace', value: initBirthPlace })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { style: { color: 'white' } },
+	        '-'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        null,
+	        _translation2.default['allergies'][lang],
+	        _react2.default.createElement('input', { onChange: handleChangeAllergies, type: 'text', name: 'allergies', value: initAllergies })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { style: { color: 'white' } },
+	        '-'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { style: { color: 'white' } },
+	        '-'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'form-group' },
+	        _react2.default.createElement(
+	          'button',
+	          { type: 'submit', className: 'btn btn-success' },
+	          _translation2.default['send'][lang]
+	        )
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement('img', { className: 'school_picture', src: 'jaselka2016.jpg', style: { width: '500px', borderRadius: '5%' } })
 	    )
 	  );
 	};
+
+/***/ },
+/* 181 */
+/***/ function(module, exports) {
+
+	'use strict';
 	
-	exports.default = RegistrationInfo;
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var str = {
+		switchLanguage: {
+			pl: 'English Version',
+			en: 'Strona Polska'
+		},
+		pageTitle: {
+			pl: 'Witamy na stronie rejestracyjnej naszej szkoły!',
+			en: 'Welcome to the registration page'
+		},
+		infoTitle: {
+			pl: 'Zasady Rejestracji w Roku Szkolnym ',
+			en: 'Registration Guidelines for School Year '
+		},
+		infoText: {
+			pl: 'Opłata za Szkołę wynosi $200 za jedno dziecko i $320 za dwoje i $400 za troje lub więcej dzieci, $30 opłata rejestracyjna od dziecka za rok. Co roku uiszczamy też składkę członkowską w wysokości $10. W opłaty wliczone są wyjazdy, poczęstunki, nagrody, upominki dla dzieci, oraz wynagrodzenia dla nauczycieli. Dodatkowa opłata dla parafii to $75 pierwsze, $35 drugie i $20 trzecie dziecko.',
+			en: 'The fee is $200 for a single child, $320 for two children, and $400 for three children or more. Registration fee is $30 per child annualy. Every year we are also obligated to pay membership fee to the Polish Heritage Center, which is $10 per family. Theese fees allow us the means to organize school trips, hospitality events, prizes for the children, as well as provide symbolic compensation for the teachers. There is an additional fee payable to the parish: $75 for the first, $35 for the second, and $20 for the third child.'
+		},
+		formTitle: {
+			pl: 'FORMULARZ REJESTRACYJNY\n',
+			en: 'REGISTRATION FORM\n'
+		},
+		formInfo: {
+			pl: 'Prosimy o dokładne wypełnienie poniższego formularza.\n',
+			en: 'Please fill out all the fields below.\n'
+		},
+		grade: {
+			pl: 'Klasa: ',
+			en: 'Grade Level: '
+		},
+		dontKnow: {
+			pl: 'nie wiem',
+			en: 'not sure'
+		},
+		preschool: {
+			pl: 'Trzylatki',
+			en: '3 year old'
+		},
+		preK: {
+			pl: 'Czterolatki',
+			en: '4 year old'
+		},
+		kindergarten: {
+			pl: 'Zerówka',
+			en: 'kindergarten'
+		},
+		first: {
+			pl: 'Klasa I',
+			en: '1'
+		},
+		second: {
+			pl: 'Klasa II',
+			en: '2'
+		},
+		third: {
+			pl: 'Klasa III',
+			en: '3'
+		},
+		fourth: {
+			pl: 'Klasa IV',
+			en: '4'
+		},
+		fifth: {
+			pl: 'Klasa V',
+			en: '5'
+		},
+		sixth: {
+			pl: 'Klasa VI',
+			en: '6'
+		},
+		seventh: {
+			pl: 'Klasa VII',
+			en: '7'
+		},
+		eigth: {
+			pl: 'Klasa VIII',
+			en: '8'
+		},
+		ninth: {
+			pl: 'Klasa IX',
+			en: '9'
+		},
+		tenth: {
+			pl: 'Klasa X',
+			en: '10'
+		},
+		eleventh: {
+			pl: 'Klasa XI',
+			en: '11'
+		},
+		jpo: {
+			pl: 'Polski Jako Obcy',
+			en: 'polish for non-speakers'
+		},
+		childFirstName: {
+			pl: 'Imię Dziecka: ',
+			en: " Child's First Name: "
+		},
+		childLastName: {
+			pl: 'Nazwisko Dziecka: ',
+			en: " Child's Last Name: "
+		},
+		spell: {
+			pl: ' *Pisownia powinna się zgadzać z tą w akcie urodzenia dziecka ',
+			en: " *Spelling must be consistent with child's birth certificate  "
+		},
+		birthDate: {
+			pl: 'Data Urodzenia: ',
+			en: 'Date of Birth: '
+		},
+		birthPlace: {
+			pl: 'Miejsce Urodzenia: ',
+			en: 'Place of Birth: '
+		},
+		allergies: {
+			pl: 'Uczulenia i Alergie: ',
+			en: 'Known Allergies: '
+		},
+		send: {
+			pl: 'Wyślij Dane',
+			en: 'Submit Information'
+		}
+	};
+	
+	exports.default = str;
+
+/***/ },
+/* 182 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _translation = __webpack_require__(181);
+	
+	var _translation2 = _interopRequireDefault(_translation);
+	
+	var _Form = __webpack_require__(180);
+	
+	var _Form2 = _interopRequireDefault(_Form);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var RegistrationForm = function (_React$Component) {
+		_inherits(RegistrationForm, _React$Component);
+	
+		function RegistrationForm(props) {
+			_classCallCheck(this, RegistrationForm);
+	
+			var _this = _possibleConstructorReturn(this, (RegistrationForm.__proto__ || Object.getPrototypeOf(RegistrationForm)).call(this, props));
+	
+			_this.state = {
+				firstName: '',
+				lastName: '',
+				grade: 'dontKnow',
+				dob: '',
+				birthPlace: '',
+				allergies: ''
+			};
+			_this.handleSubmit = _this.handleSubmit.bind(_this);
+			_this.handleChangeFirstName = _this.handleChangeFirstName.bind(_this);
+			_this.handleChangeLastName = _this.handleChangeLastName.bind(_this);
+			_this.handleChangeGrade = _this.handleChangeGrade.bind(_this);
+			_this.handleChangeDOB = _this.handleChangeDOB.bind(_this);
+			_this.handleChangeBirthPlace = _this.handleChangeBirthPlace.bind(_this);
+			_this.handleChangeAllergies = _this.handleChangeAllergies.bind(_this);
+			return _this;
+		}
+	
+		_createClass(RegistrationForm, [{
+			key: 'handleSubmit',
+			value: function handleSubmit(event) {
+				event.preventDefault();
+				this.setState({ firstName: '',
+					//lastName: this.state.lastName,
+					grade: 'dontKnow',
+					dob: '',
+					//birthPlace: this.state.birthPlace,
+					allergies: ''
+				});
+				console.log(this.state);
+				//TODO: trigger post request on the express side
+				//ADD: axios call
+			}
+		}, {
+			key: 'handleChangeFirstName',
+			value: function handleChangeFirstName(event) {
+				this.setState({
+					firstName: event.target.value });
+			}
+		}, {
+			key: 'handleChangeLastName',
+			value: function handleChangeLastName(event) {
+				this.setState({
+					lastName: event.target.value });
+			}
+		}, {
+			key: 'handleChangeGrade',
+			value: function handleChangeGrade(event) {
+				this.setState({
+					grade: event.target.value });
+			}
+		}, {
+			key: 'handleChangeDOB',
+			value: function handleChangeDOB(event) {
+				this.setState({
+					dob: event.target.value });
+			}
+		}, {
+			key: 'handleChangeBirthPlace',
+			value: function handleChangeBirthPlace(event) {
+				this.setState({
+					birthPlace: event.target.value });
+			}
+		}, {
+			key: 'handleChangeAllergies',
+			value: function handleChangeAllergies(event) {
+				this.setState({
+					allergies: event.target.value });
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(_Form2.default, { lang: this.props.lang, handleSubmit: this.handleSubmit,
+					handleChangeFirstName: this.handleChangeFirstName, initFirstName: this.state.firstName,
+					handleChangeLastName: this.handleChangeLastName, initLastName: this.state.lastName,
+					handleChangeGrade: this.handleChangeGrade, initGrade: this.state.grade,
+					handleChangeDOB: this.handleChangeDOB, initDOB: this.state.dob,
+					handleChangeBirthPlace: this.handleChangeBirthPlace, initBirthPlace: this.state.birthPlace,
+					handleChangeAllergies: this.handleChangeAllergies, initAllergies: this.state.allergies });
+			}
+		}]);
+	
+		return RegistrationForm;
+	}(_react2.default.Component);
+	
+	exports.default = RegistrationForm;
+	;
 
 /***/ }
 /******/ ]);
