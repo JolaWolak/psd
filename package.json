@@ -26,6 +26,7 @@
   "homepage": "https://github.com/JolaWolak/psd#readme",
   "dependencies": {
     "axios": "^0.15.3",
+    "body-parser": "^1.16.0",
     "express": "^4.14.0",
     "pg": "^6.1.2",
     "pg-hstore": "^2.3.2",

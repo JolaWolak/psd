@@ -116,9 +116,69 @@ const str = {
 		pl: 'Uczulenia i Alergie: ',
 		en: 'Known Allergies: '
 	},
+	address: {
+		pl: 'Adres Zamieszkania: ',
+		en: 'Address: '
+	},
+	street1: {
+		pl: 'Numer Domu i Ulica: ',
+		en: 'House Number and Street Name: '
+	},
+	street2: {
+		pl: 'Numer Mieszkania: ',
+		en: 'Apartment Number: '
+	},
+	city: {
+		pl: 'Miejscowość: ',
+		en: 'Township: '
+	},
+	state: {
+		pl: 'Stan: ',
+		en: 'State: '
+	},
+	zip: {
+		pl: 'Kod Pocztowy: ',
+		en: 'Zip Code: '
+	},
+	email: {
+		pl: 'Adres Mailowy: ',
+		en: 'Email Address: '
+	},
+	phoneNumber: {
+		pl: 'Numer Telefonu (10 cyfr): ',
+		en: 'Phone Number (10 digits): '
+	},
+	phoneType: {
+		pl: 'Rodzaj Telefonu: ',
+		en: 'Phone Type: '
+	},
+	mother: {
+		pl: 'Dane Matki/Opiekunki:',
+		en: 'Mother/Guardian Information:'
+	},
+	father: {
+		pl: 'Dane Ojca/Opiekuna: ',
+		en: 'Father/Guardian Information: '
+	},
+	firstName: {
+		pl: 'Imię: ',
+		en: 'First Name: '
+	},
+	lastName: {
+		pl: 'Nazwisko: ',
+		en: 'Last Name: '
+	},
 	send: {
 		pl: 'Wyślij Dane',
 		en: 'Submit Information'
+	},
+	registeredName: {
+		pl: ' jest zarejestrowana(y).',
+		en: ' has been registered.'
+	},
+	registeredInstruction: {
+		pl: 'Wypełnij poniższy formularz, jeżeli chcesz zarejestrować kolejne dziecko.',
+		en: 'Please fill out the form below if you wish to register another child.'
 	}
 };
 
