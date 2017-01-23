@@ -4,20 +4,42 @@ const app = express();
 const db = require ('../db/index.js');
 const Child = require('../db/models/child');
 const port = 3000;
-
 const bodyParser = require('body-parser');
+const nodemailer = require ('nodemailer');
+
+const smtpConfig = {
+    host: 'smtp.netfirms.com',
+    port: 587,
+    //secure: true, // use SSL
+    auth: {
+        user: 'browser@lakewoodpolishschool.com',
+        pass: 'Rejestracja2017'
+    }
+};
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/', (req,res,next) => {
   console.log('hitting the root');
+
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 app.get('/test', (req,res,next) => {
   console.log('GET /test');
+
+  var transporter = nodemailer.createTransport( smtpConfig );
+  transporter.verify(function(error, success) {
+   if (error) {
+        console.log(error);
+   } else {
+        console.log('Server is ready to take our messages');
+   }
+});
+
   res.sendStatus(200);
 });
 
